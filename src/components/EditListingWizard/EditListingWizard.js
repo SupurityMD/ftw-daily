@@ -177,9 +177,9 @@ const handleGetStripeConnectAccountLinkFn = (getLinkFn, commonParams) => type =>
     .catch(err => console.error(err));
 };
 
-const RedirectToStripe = ({redirectFn}) => {
+const RedirectToStripe = ({ redirectFn }) => {
   useEffect(redirectFn('custom_account_verification'), []);
-  return <FormattedMessage id="EditListingWizard.redirectingToStripe" />
+  return <FormattedMessage id="EditListingWizard.redirectingToStripe" />;
 };
 
 // Create a new or edit listing through EditListingWizard
@@ -325,8 +325,18 @@ class EditListingWizard extends Component {
     const rootURL = config.canonicalRootURL;
     const routes = routeConfiguration();
     const { returnURLType, ...pathParams } = params;
-    const successURL = createReturnURL(STRIPE_ONBOARDING_RETURN_URL_SUCCESS, rootURL, routes, pathParams);
-    const failureURL = createReturnURL(STRIPE_ONBOARDING_RETURN_URL_FAILURE, rootURL, routes, pathParams);
+    const successURL = createReturnURL(
+      STRIPE_ONBOARDING_RETURN_URL_SUCCESS,
+      rootURL,
+      routes,
+      pathParams
+    );
+    const failureURL = createReturnURL(
+      STRIPE_ONBOARDING_RETURN_URL_FAILURE,
+      rootURL,
+      routes,
+      pathParams
+    );
 
     const accountId = stripeConnected ? stripeAccount.id : null;
     const stripeAccountData = stripeConnected ? getStripeAccountData(stripeAccount) : null;
@@ -355,7 +365,6 @@ class EditListingWizard extends Component {
     if (returnedNormallyFromStripe && stripeConnected && !requirementsMissing) {
       return <NamedRedirect name="EditListingPage" params={pathParams} />;
     }
-
 
     return (
       <div className={classes}>
@@ -402,54 +411,54 @@ class EditListingWizard extends Component {
             </h1>
             {!currentUserLoaded ? (
               <FormattedMessage id="StripePayoutPage.loadingData" />
-            ) : (returnedAbnormallyFromStripe && !stripeAccountLinkError) ?
-             <p className={css.modalMessage}>
-               <RedirectToStripe redirectFn={handleGetStripeConnectAccountLink} />
-             </p>
-             : (
-               <>
-                 <p className={css.modalMessage}>
-                   <FormattedMessage id="EditListingWizard.payoutModalInfo" />
-                 </p>
-                 <StripeConnectAccountForm
-                   disabled={formDisabled}
-                   inProgress={payoutDetailsSaveInProgress}
-                   ready={payoutDetailsSaved}
-                   currentUser={ensuredCurrentUser}
-                   stripeBankAccountLastDigits={getBankAccountLast4Digits(stripeAccountData)}
-                   savedCountry={savedCountry}
-                   submitButtonText={intl.formatMessage({
-                     id: 'StripePayoutPage.submitButtonText',
-                   })}
-                   stripeAccountError={stripeAccountError}
-                   stripeAccountFetched={stripeAccountFetched}
-                   stripeAccountLinkError={stripeAccountLinkError}
-                   onChange={onPayoutDetailsFormChange}
-                   onSubmit={rest.onPayoutDetailsSubmit}
-                   onGetStripeConnectAccountLink={handleGetStripeConnectAccountLink}
-                   stripeConnected={stripeConnected}
-                 >
-                   {stripeConnected && (!returnedAbnormallyFromStripe && showVerificationNeeded) ? (
-                     <StripeConnectAccountStatusBox
-                       type='verificationNeeded'
-                       inProgress={getAccountLinkInProgress}
-                       onGetStripeConnectAccountLink={handleGetStripeConnectAccountLink(
-                         'custom_account_verification'
-                       )}
-                     />
-                   ) : (stripeConnected && savedCountry && !returnedAbnormallyFromStripe) ? (
-                     <StripeConnectAccountStatusBox
-                       type="verificationSuccess"
-                       inProgress={getAccountLinkInProgress}
-                       disabled={payoutDetailsSaveInProgress}
-                       onGetStripeConnectAccountLink={handleGetStripeConnectAccountLink(
-                         'custom_account_update'
-                       )}
-                     />
-                   ) : null}
-                 </StripeConnectAccountForm>
-               </>
-             )}
+            ) : returnedAbnormallyFromStripe && !stripeAccountLinkError ? (
+              <p className={css.modalMessage}>
+                <RedirectToStripe redirectFn={handleGetStripeConnectAccountLink} />
+              </p>
+            ) : (
+              <>
+                <p className={css.modalMessage}>
+                  <FormattedMessage id="EditListingWizard.payoutModalInfo" />
+                </p>
+                <StripeConnectAccountForm
+                  disabled={formDisabled}
+                  inProgress={payoutDetailsSaveInProgress}
+                  ready={payoutDetailsSaved}
+                  currentUser={ensuredCurrentUser}
+                  stripeBankAccountLastDigits={getBankAccountLast4Digits(stripeAccountData)}
+                  savedCountry={savedCountry}
+                  submitButtonText={intl.formatMessage({
+                    id: 'StripePayoutPage.submitButtonText',
+                  })}
+                  stripeAccountError={stripeAccountError}
+                  stripeAccountFetched={stripeAccountFetched}
+                  stripeAccountLinkError={stripeAccountLinkError}
+                  onChange={onPayoutDetailsFormChange}
+                  onSubmit={rest.onPayoutDetailsSubmit}
+                  onGetStripeConnectAccountLink={handleGetStripeConnectAccountLink}
+                  stripeConnected={stripeConnected}
+                >
+                  {stripeConnected && (!returnedAbnormallyFromStripe && showVerificationNeeded) ? (
+                    <StripeConnectAccountStatusBox
+                      type="verificationNeeded"
+                      inProgress={getAccountLinkInProgress}
+                      onGetStripeConnectAccountLink={handleGetStripeConnectAccountLink(
+                        'custom_account_verification'
+                      )}
+                    />
+                  ) : stripeConnected && savedCountry && !returnedAbnormallyFromStripe ? (
+                    <StripeConnectAccountStatusBox
+                      type="verificationSuccess"
+                      inProgress={getAccountLinkInProgress}
+                      disabled={payoutDetailsSaveInProgress}
+                      onGetStripeConnectAccountLink={handleGetStripeConnectAccountLink(
+                        'custom_account_update'
+                      )}
+                    />
+                  ) : null}
+                </StripeConnectAccountForm>
+              </>
+            )}
           </div>
         </Modal>
       </div>

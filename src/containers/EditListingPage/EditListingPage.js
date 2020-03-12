@@ -83,7 +83,7 @@ export const EditListingPageComponent = props => {
     scrollingDisabled,
     stripeAccountFetched,
     stripeAccount,
-    updateStripeAccountError
+    updateStripeAccountError,
   } = props;
 
   const { id, type, returnURLType } = params;
