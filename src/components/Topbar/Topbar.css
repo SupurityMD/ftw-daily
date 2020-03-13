@@ -10,7 +10,7 @@
     since browsers support CSS Properties already.
  */
 
-  --Topbar_logoHeight: 25px;
+  --Topbar_logoHeight: 50px;
 }
 
 .root {
@@ -45,7 +45,7 @@
 
 .home {
   display: flex;
-  padding: calc((var(--topbarHeight) - var(--Topbar_logoHeight)) / 2) 24px;
+  padding: calc((var(--topbarHeight) - var(--Topbar_logoHeight)) / 2) 50px;
 }
 
 .logoutButton {

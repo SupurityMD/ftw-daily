@@ -1,0 +1,9 @@
+<<<<<<<<<DOC - OU TROUVER LES ELEMENTS NECESSAIRES DANS LES MULTIPLES FICHIERS>>>>>>>
+
+
+liste des catégories : marketplace-custom-config.js
+url footer : config.js
+links vers RS : config.js
+maj du logo : src/components/logo/
+icons / fav icons : public/static/icons
+titre des pages : translation/xx.json (chercher le nom de la page dans la liste)

@@ -30,12 +30,7 @@ const renderSocialMediaLinks = intl => {
   ) : null;
 
   const twitterLink = siteTwitterPage ? (
-    <ExternalLink
-      key="linkToTwitter"
-      href={siteTwitterPage}
-      className={css.icon}
-      title={goToTwitter}
-    >
+    <ExternalLink key="linkToTwitter" href={siteTwitterPage} className={css.icon} title={goToTwitter}>
       <IconSocialMediaTwitter />
     </ExternalLink>
   ) : null;

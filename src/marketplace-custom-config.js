@@ -47,8 +47,8 @@ export const categories = [
 // Price filter configuration
 // Note: unlike most prices this is not handled in subunits
 export const priceFilterConfig = {
-  min: 0,
-  max: 1000,
+  min: 1000,
+  max: 100000,
   step: 5,
 };
 
